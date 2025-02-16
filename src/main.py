@@ -1,13 +1,15 @@
+import difflib
+
 import pygame
 import sys
 import threading
 import io
 import signal
-from flask import Flask, Response
+from flask import Flask, Response, request, jsonify
 
 from src.line import Line
-from src.stations import TrainStation
 from src.train import Train
+from src.resources.berlin_stations import *
 
 # Initialize pygame
 pygame.init()
@@ -26,33 +28,15 @@ screen = pygame.Surface((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 
 
-# Create Train stations
-blankenfelde = TrainStation("Blankenfelde", int(WIDTH * 0.5), int(HEIGHT * 0.95))
-mahlow = TrainStation("Mahlow", int(WIDTH * 0.5), int(HEIGHT * 0.9))
-lichtenrade = TrainStation("Lichtenrade", int(WIDTH * 0.5), int(HEIGHT * 0.85))
-schichaueweg = TrainStation("Schichauweg", int(WIDTH * 0.5), int(HEIGHT * 0.8))
-buckower_chaussee = TrainStation("Buckower Chaussee", int(WIDTH * 0.5), int(HEIGHT * 0.75))
-marienfelde = TrainStation("Marienfelde", int(WIDTH * 0.5), int(HEIGHT * 0.7))
-attilastrasse = TrainStation("Attilastraße", int(WIDTH * 0.45), int(HEIGHT * 0.65))
-priesterweg = TrainStation("Priesterweg", int(WIDTH * 0.4), int(HEIGHT * 0.6))
-suedkreuz = TrainStation("Südkreuz", int(WIDTH * 0.4), int(HEIGHT * 0.55))
-
-suedende = TrainStation("Südende", int(WIDTH * 0.35), int(HEIGHT * 0.65))
-lankwitz = TrainStation("Lankwitz", int(WIDTH * 0.3), int(HEIGHT * 0.7))
-lichterfelde_ost = TrainStation("Lichterfelde Ost", int(WIDTH * 0.25), int(HEIGHT * 0.75))
-osdorfer_str = TrainStation("Osdorfer Str.", int(WIDTH * 0.2), int(HEIGHT * 0.8))
-lichterfelde_sued = TrainStation("Lichterfelde Süd", int(WIDTH * 0.15), int(HEIGHT * 0.85))
-teltow_stadt = TrainStation("Teltow Stadt", int(WIDTH * 0.1), int(HEIGHT * 0.9))
-
-
 # Create trains
-s2 = Line([blankenfelde, mahlow, lichtenrade, schichaueweg, buckower_chaussee, marienfelde, attilastrasse, priesterweg, suedkreuz])
-s25 = Line([teltow_stadt, lichterfelde_sued, osdorfer_str, lichterfelde_ost, lankwitz, suedende, priesterweg, suedkreuz])
+s2 = Line("S2", [blankenfelde, mahlow, lichtenrade, schichaueweg, buckower_chaussee, marienfelde, attilastrasse, priesterweg, suedkreuz])
+s25 = Line("S25", [teltow_stadt, lichterfelde_sued, osdorfer_str, lichterfelde_ost, lankwitz, suedende, priesterweg, suedkreuz])
 
 lines = [s2, s25]
 
 trains = [
-    Train(s2, BLUE, 20)
+    Train(s2, BLUE, 5, 0, True),
+    Train(s25, RED, 5, 0, False)
 ]
 
 

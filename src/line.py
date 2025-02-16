@@ -6,7 +6,8 @@ from src.stations import TrainStation
 
 
 class Line:
-    def __init__(self, stations: List[TrainStation], color=(0, 0, 0)):
+    def __init__(self, name: str, stations: List[TrainStation], color=(0, 0, 0)):
+        self.name = name
         self.stations = stations
         self.color = color
 
