@@ -29,14 +29,21 @@ clock = pygame.time.Clock()
 
 
 # Create trains
-s2 = Line("S2", [blankenfelde, mahlow, lichtenrade, schichaueweg, buckower_chaussee, marienfelde, attilastrasse, priesterweg, suedkreuz])
-s25 = Line("S25", [teltow_stadt, lichterfelde_sued, osdorfer_str, lichterfelde_ost, lankwitz, suedende, priesterweg, suedkreuz])
+s2 = Line("S2", [blankenfelde, mahlow, lichtenrade, schichaueweg, buckower_chaussee, marienfelde,
+                 attilastrasse, priesterweg, suedkreuz, yorckstr, anhalter_bahnhof, potsdamer_platz, brandenburger_tor,
+                 friedrichstr, oranienburger_str, nordbahnhof, humboldthain, gesundbrunnen, bornholmer_str, pankow,
+                 pankow_heinersdorf, blankenburg, karow, buch, roentgental, zepernick, bernau_friedenstal, bernau])
+s25 = Line("S25", [teltow_stadt, lichterfelde_sued, osdorfer_str, lichterfelde_ost, lankwitz, suedende,
+                   priesterweg, suedkreuz, yorckstr, anhalter_bahnhof, potsdamer_platz, brandenburger_tor, friedrichstr,
+                   oranienburger_str, nordbahnhof, humboldthain, gesundbrunnen, bornholmer_str, wollankstr, schoenholz,
+                   alt_reinickendorf, karl_bonhoeffer_nervenklinik, eichborndamm, tegel, schulzendorf, heiligensee,
+                   hennigsdorf])
 
 lines = [s2, s25]
 
 trains = [
-    Train(s2, BLUE, 5, 0, True),
-    Train(s25, RED, 5, 0, False)
+    Train(s2, BLUE, 5, 5, False),
+    Train(s25, RED, 5, 0, True)
 ]
 
 

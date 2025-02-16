@@ -2,7 +2,7 @@ from typing import List
 
 import pygame
 
-from src.stations import TrainStation
+from src.train_station import TrainStation
 
 
 class Line:
